@@ -1,0 +1,18 @@
+<style>
+#my_frame { width: 400px; height: 300px; }
+</style>
+
+<div>
+  <button onclick='open_in_frame("http://p.eagate.573.jp/game/sdvx/iv/p/playdata/profile/index.html")'>SDVX Profile Page</button>
+  <button onclick='open_in_frame("http://p.eagate.573.jp/game/sdvx/iv/p/playdata/profile/index.html")'>SDVX Profile Page</button>
+  <button onclick='open_in_frame("http://anzuinfo.me/myscore.html")'>Anzuinfo</button>
+ <button onclick='open_in_frame("javascript: var id,nm,fr,ct,sk,usr=[],scr=[],mp=0,cp=0,mr=[],cr=[],t1_d={novice:0,advanced:1,exhaust:2,maximum:3,infinite:4},t2_d={nov:0,adv:1,exh:2,mxm:3,inf:4,gra:4,hvn:4};function sa(t,e,i){t.setAttribute(e,i)}function itv(t){var e=$.Deferred();return setTimeout(function(){e.resolve()},t),e.promise()}function getList(t){itv(1e3*(t+2)).done(function(){$.ajax({type:"GET",url:"https://p.eagate.573.jp/game/sdvx/iv/p/playdata/musicdata/index.html?page="+t+"&sort=0",success:function(e){cr[t-1]=0,mr[t-1]=$(e).find(".data_col").length,$(e).find(".data_col").each(function(){var e=[],i=[];$(this).find("td").each(function(){return"music"==$(this).attr("class")||("-0"==$(this).text()||(e[t1_d[$(this).attr("class")]]=$(this).find("img").first().attr("src").replace("/game/sdvx/iv/p/images/p/rival/rival_mark_","").replace(".png",""),void(i[t1_d[$(this).attr("class")]]=$(this).text())))});var a=$(this).find(".title a").attr("href");$.ajax({type:"GET",data:{comp:e,score:i},url:a,success:function(t){var a,n,r,s,c;a=$(t).find("#music_title").text().replace(",","、").replace("(EXIT TUNES)",""),$(t).find(".music_box").each(function(){"--"!=$(this).find(".cnt").first().text()&&(n=$(this).find(".diff").attr("id").replace("diff_",""),r=$(this).find(".level").text(),s=i[t2_d[n]],c=e[t2_d[n]],scr.push(a+"\t"+n+"\t"+r+"\t"+c+"\t"+s))})},complete:function(e){cr[t-1]++,$("#pg").text(t+"/"+mp+" 페이지 "+cr[t-1]+"/"+mr[t-1]+" 번째 곡 로딩완료!"),checkFinish()}})})},complete:function(t){cp++,checkFinish()}})})}function checkFinish(){if(cp==mp&&mr.length==mp){for(var t=0;t<mr.length;t++)if(cr[t]!=mr[t])return;if(0!=usr.length){var e=document.createElement("form");document.body.appendChild(e),sa(e,"action","http://anzuinfo.me/savescore.php"),sa(e,"accept-charset","UTF-8"),sa(e,"method","post");var i=document.createElement("input");sa(i,"type","text"),sa(i,"name","usr"),sa(i,"value",usr.toString()),e.appendChild(i);var a=document.createElement("input");sa(a,"type","text"),sa(a,"name","scr"),sa(a,"value",scr.toString()),e.appendChild(a),e.submit()}}}$(function(){alert("잠시만 기다려주세요, 1~2분정도 걸립니다.");var t=$("<div>").attr("style","position:fixed; top:0; z-index:100; width:100%; height:100%; background-color:rgba(0,0,0,0.5);"),e=$("<span>").attr("style","position:fixed; bottom:0; z-index:101; width:100%; height:50px; background-color:lightpink; color:white; line-height:50px; text-align:center; font-size:24px;");e.attr("id","pg"),e.text("준비 중입니다..."),$("body").append(t),$("body").append(e),$.ajax({type:"GET",url:"https://p.eagate.573.jp/game/sdvx/iv/p/playdata/profile/index.html"}).done(function(t){id=$(t).find("#player_id").text(),nm=$(t).find("#name_str").text(),fr=$(t).find("#force_point").text(),sk=$(t).find(".profile_skill").attr("id").replace("skill_",""),ct=$(t).find(".profile_cnt").first().text(),usr.push(id,nm,fr,ct,sk)}),$.ajax({type:"GET",url:"https://p.eagate.573.jp/game/sdvx/iv/p/playdata/musicdata/index.html"}).done(function(t){if(0!=(mp=Number($(t).find(".page").text().replace(/\s/g,"").replace("＞","").split("・").pop())))for(var e=1;e<=mp;e++)getList(e);else alert("점수 데이터가 존재하지 않습니다.")})});")'>Anzuinfo</button>
+</div>
+<iframe id='my_frame'></iframe>
+
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script>
+function open_in_frame(url) {
+	$('#my_frame').attr('src', url);
+}
+</script>
